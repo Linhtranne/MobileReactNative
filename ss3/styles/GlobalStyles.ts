@@ -31,9 +31,10 @@ export const SPACING = {
 export const CONTAINER_STYLES = {
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center' as FlexAlignType,
+    justifyContent: 'center' as 'center',
+    alignItems: 'center' as 'center',
     backgroundColor: COLORS.background,
-    padding: SPACING.lg,
+    padding: 16,
   },
 };
+

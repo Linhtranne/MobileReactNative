@@ -36,7 +36,6 @@ export default function LoginScreen() {
 }
 
 const styles = StyleSheet.create({
-  // container: CONTAINER_STYLES.container,
   logo: {
     width: 300,
     height: 110,
