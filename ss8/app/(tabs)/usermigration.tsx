@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const STORAGE_KEY = 'userProfile';
 
-// Version 2 structure
 interface UserProfileV2 {
   user: {
     firstName: string;
