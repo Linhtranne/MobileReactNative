@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useRoute } from '@react-navigation/native';
+import { Picker } from '@react-native-picker/picker';
 
 export default function ProductFormScreen() {
   const navigation = useNavigation<any>();
@@ -57,7 +58,16 @@ export default function ProductFormScreen() {
       <Text>Link hình ảnh</Text>
       <TextInput value={image} onChangeText={setImage} style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 6, marginBottom: 8, padding: 8 }} />
       <Text>Trạng thái</Text>
-      <TextInput value={status} onChangeText={setStatus} style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 6, marginBottom: 16, padding: 8 }} />
+      <View style={{ borderWidth: 1, borderColor: '#ccc', borderRadius: 6, marginBottom: 16 }}>
+        <Picker
+          selectedValue={status}
+          onValueChange={setStatus}
+        >
+          <Picker.Item label="Chưa bán" value="Chưa bán" />
+          <Picker.Item label="Đang bán" value="Đang bán" />
+          <Picker.Item label="Ngừng bán" value="Ngừng bán" />
+        </Picker>
+      </View>
       <Button title={isEdit ? 'Cập nhật' : 'Thêm mới'} onPress={handleSave} />
     </View>
   );

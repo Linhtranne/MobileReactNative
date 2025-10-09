@@ -33,20 +33,20 @@ export default function ProductListScreen() {
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
-      <Button title="Thêm sản phẩm" onPress={() => navigation.navigate('ProductForm', { mode: 'add' })} />
+      <Button title="Thêm sản phẩm" onPress={() => navigation.navigate('form', { mode: 'add' })} />
       <FlatList
         data={products}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <ProductCard
             product={item}
-            onPress={() => navigation.navigate('ProductDetail', { id: item.id })}
-            onEdit={() => navigation.navigate('ProductForm', { mode: 'edit', product: item })}
+            onPress={() => navigation.navigate('detail', { id: item.id })}
+            onEdit={() => navigation.navigate('form', { mode: 'edit', product: item })}
             onDelete={() => handleDelete(item.id)}
           />
         )}
         style={{ marginTop: 12 }}
-        ListEmptyComponent={<View style={{ alignItems: 'center', marginTop: 32 }}><Button title="Thêm sản phẩm đầu tiên" onPress={() => navigation.navigate('ProductForm', { mode: 'add' })} /></View>}
+        ListEmptyComponent={<View style={{ alignItems: 'center', marginTop: 32 }}><Button title="Thêm sản phẩm đầu tiên" onPress={() => navigation.navigate('form', { mode: 'add' })} /></View>}
       />
     </View>
   );
