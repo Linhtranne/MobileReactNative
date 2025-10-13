@@ -17,17 +17,24 @@ export default function TabLayout() {
         tabBarButton: HapticTab,
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Trang chủ',
+          tabBarIcon: ({ color, size }) => <IconSymbol name="house.fill" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="positions"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Vị trí',
+          tabBarIcon: ({ color, size }) => <IconSymbol name="paperplane.fill" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="account"
+        options={{
+          title: 'Tài khoản',
+          tabBarIcon: ({ color, size }) => <IconSymbol name="chevron.right" color={color} size={size} />,
         }}
       />
     </Tabs>
