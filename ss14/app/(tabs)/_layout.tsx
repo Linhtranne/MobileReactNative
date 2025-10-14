@@ -1,40 +1,42 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: "#007AFF",
+        tabBarInactiveTintColor: "#8E8E8F",
+      }}
+    >
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
-          title: 'Trang chủ',
-          tabBarIcon: ({ color, size }) => <IconSymbol name="house.fill" color={color} size={size} />,
+          title: "Trang chủ",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="home" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="positions"
+        name="position"
         options={{
-          title: 'Vị trí',
-          tabBarIcon: ({ color, size }) => <IconSymbol name="paperplane.fill" color={color} size={size} />,
+          title: "Vị trí",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="briefcase" size={24} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="account"
         options={{
-          title: 'Tài khoản',
-          tabBarIcon: ({ color, size }) => <IconSymbol name="chevron.right" color={color} size={size} />,
+          title: "Tài khoản",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="user-circle" size={24} color={color} />
+          ),
         }}
       />
     </Tabs>
