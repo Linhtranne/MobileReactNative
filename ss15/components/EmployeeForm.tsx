@@ -18,7 +18,7 @@ import {
   View,
 } from "react-native";
 import { Employee, Gender, Position } from "../data/mockData";
-import { styles } from "./employee-form.styles";
+import { styles } from "../styles/employee-form.styles";
 
 interface EmployeeFormProps {
   initialData?: Employee;
