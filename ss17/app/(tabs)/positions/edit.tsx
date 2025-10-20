@@ -1,43 +1,49 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, Text } from "react-native";
-import PositionForm from "../../../components/PositionForm";
-import { usePositions } from "../../../hooks/usePositions";
+import { View, Text, Alert } from "react-native";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter, useLocalSearchParams } from "expo-router";
+import PositionForm from "./PositionForm";
+import { getPositionById, updatePosition } from "../../../api/positions";
 
 export default function EditPositionScreen() {
+  const queryClient = useQueryClient();
   const router = useRouter();
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const positionId = Number(id);
-  const { getPositionById, updatePosition, loading } = usePositions();
+  const { id } = useLocalSearchParams();
 
-  const position = getPositionById(positionId);
+  const positionId = typeof id === 'string' ? id : Array.isArray(id) ? id[0] : '';
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["position", positionId],
+    queryFn: () => getPositionById(positionId),
+    enabled: !!positionId,
+  });
 
-  const handleUpdatePosition = async (data: any) => {
-    if (position) {
-      // Giữ lại id và createdAt không đổi
-      await updatePosition({ ...position, ...data });
-      if (router.canGoBack()) {
-        router.back();
-      }
-    }
-  };
+  const mutation = useMutation({
+    mutationFn: (values: { positionName: string }) => updatePosition(positionId, values),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["positions"] });
+      Alert.alert("Thành công", "Đã cập nhật vị trí.");
+      router.back();
+    },
+    onError: () => {
+      Alert.alert("Lỗi", "Không thể cập nhật vị trí. Vui lòng thử lại.");
+    },
+  });
 
-  if (loading) return <ActivityIndicator size="large" />;
-  if (!position)
-    return <Text style={styles.errorText}>Không tìm thấy vị trí.</Text>;
+  if (isLoading) {
+    return <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Đang tải dữ liệu...</Text></View>;
+  }
+  if (isError || !data) {
+    return <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}><Text>Không thể tải dữ liệu vị trí.</Text></View>;
+  }
 
   return (
-    <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
+    <View style={{ flex: 1, justifyContent: "center" }}>
       <PositionForm
-        onSubmit={handleUpdatePosition}
-        initialValues={{
-          positionName: position.positionName,
-          description: position.description,
-          positionStatus: position.positionStatus,
-        }}
-        submitButtonText="Cập nhật"
+        onSubmit={mutation.mutate}
+        isLoading={mutation.isPending}
+        initialValues={{ positionName: data.data?.positionName || "" }}
       />
-    </ScrollView>
+    </View>
   );
 }
 

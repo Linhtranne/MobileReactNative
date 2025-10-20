@@ -1,25 +1,22 @@
-import { useLocalSearchParams } from "expo-router";
 import React from "react";
-import {
-  ActivityIndicator,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import { usePositions } from "../../../hooks/usePositions";
+import { View, Text, ActivityIndicator, ScrollView, StyleSheet } from "react-native";
+import { useLocalSearchParams } from "expo-router";
+import { useQuery } from "@tanstack/react-query";
+import { fetchPositionById } from "../../../api/positions";
 
 export default function PositionDetailScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  const positionId = Number(id);
-  const { getPositionById, loading } = usePositions();
+  const { id } = useLocalSearchParams();
+  const positionId = typeof id === 'string' ? id : Array.isArray(id) ? id[0] : '';
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["position", positionId],
+    queryFn: () => fetchPositionById(positionId),
+    enabled: !!positionId,
+  });
 
-  const position = getPositionById(positionId);
+  if (isLoading) return <View style={styles.centered}><ActivityIndicator size="large" /></View>;
+  if (isError || !data) return <Text style={styles.errorText}>Không tìm thấy vị trí.</Text>;
 
-  if (loading) return <ActivityIndicator size="large" />;
-  if (!position)
-    return <Text style={styles.errorText}>Không tìm thấy vị trí.</Text>;
-
+  const position = data.data;
   const isActive = position.positionStatus === "ACTIVE";
 
   return (
@@ -32,18 +29,17 @@ export default function PositionDetailScreen() {
         <Text style={styles.valueDescription}>{position.description}</Text>
 
         <Text style={styles.label}>Trạng thái</Text>
-        <Text
-          style={[
-            styles.valueStatus,
-            { color: isActive ? "#2F855A" : "#C53030" },
-          ]}
-        >
+        <Text style={[styles.valueStatus, { color: isActive ? "#2F855A" : "#C53030" }]}>
           {isActive ? "Đang hoạt động" : "Không hoạt động"}
         </Text>
+        {/* Hiển thị thêm các trường khác nếu có */}
+        <Text style={styles.label}>ID</Text>
+        <Text>{position.id}</Text>
       </View>
     </ScrollView>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f5f5f5", padding: 20 },
@@ -59,4 +55,5 @@ const styles = StyleSheet.create({
   valueStatus: { fontSize: 20, fontWeight: "bold" },
   valueDate: { fontSize: 16, fontStyle: "italic", color: "#718096" },
   errorText: { textAlign: "center", marginTop: 50, fontSize: 18, color: "red" },
+  centered: { flex: 1, justifyContent: "center", alignItems: "center" },
 });

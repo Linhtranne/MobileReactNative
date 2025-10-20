@@ -1,33 +1,30 @@
-import { useRouter } from "expo-router";
 import React from "react";
-import { ScrollView, StyleSheet } from "react-native";
-import PositionForm from "../../../components/PositionForm";
-import { usePositions } from "../../../hooks/usePositions";
-import { Position } from "../../../types";
+import { View, Alert, StyleSheet } from "react-native";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "expo-router";
+import PositionForm from "./PositionForm";
+import { createPosition } from "../../../api/positions";
 
 export default function AddPositionScreen() {
   const router = useRouter();
-  const { addPosition } = usePositions();
-
-  const handleAddPosition = async (
-    data: Omit<Position, "id" | "createdAt">
-  ) => {
-    await addPosition(data);
-    if (router.canGoBack()) {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: createPosition,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['positions'] });
+      Alert.alert("Thành công", "Đã thêm vị trí mới.");
       router.back();
-    }
-  };
+    },
+    onError: () => {
+      Alert.alert("Lỗi", "Không thể thêm vị trí. Vui lòng thử lại.");
+    },
+  });
 
   return (
-    <ScrollView style={styles.container} keyboardShouldPersistTaps="handled">
-      <PositionForm
-        onSubmit={handleAddPosition}
-        submitButtonText="Thêm vị trí"
-      />
-    </ScrollView>
+    <View style={{ flex: 1, justifyContent: "center" }}>
+  <PositionForm onSubmit={mutation.mutate} isLoading={mutation.isPending} />
+    </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "white" },
-});
+// styles removed (không dùng)
