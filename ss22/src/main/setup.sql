@@ -1,11 +1,10 @@
-create database react_native_ss22;
-use react_native_ss22;
+create database ss22;
+use ss22;
 
-# data mẫu
 INSERT INTO task (name, priority, status, description)
 VALUES
-    ('Làm bài tập Spring Boot', 'HIGH', 'PENDING', 'Hoàn thành CRUD và Security trong tối nay'),
-    ('Đi tập gym', 'MEDIUM', 'COMPLETED', 'Tập ngực và tay trước, đã xong'),
-    ('Dọn bàn học', 'LOW', 'PENDING', 'Sắp xếp lại tài liệu, vứt giấy thừa'),
-    ('Đọc sách 30 phút', 'MEDIUM', 'PENDING', 'Đọc sách công nghệ hoặc tâm lý'),
-    ('Học tiếng Anh', 'HIGH', 'COMPLETED', 'Luyện Listening và Vocabulary ngày hôm nay');
+    ('Viết báo cáo đồ án', 'HIGH', 'PENDING', 'Hoàn thành phần kết luận và tài liệu tham khảo'),
+    ('Chạy bộ buổi sáng', 'MEDIUM', 'COMPLETED', 'Chạy 5km quanh công viên'),
+    ('Nấu cơm trưa', 'LOW', 'PENDING', 'Chuẩn bị nguyên liệu và nấu ăn cho gia đình'),
+    ('Học React Native', 'HIGH', 'PENDING', 'Xem video bài giảng và thực hành code'),
+    ('Ôn tập toán', 'MEDIUM', 'COMPLETED', 'Làm bài tập về xác suất và thống kê');
