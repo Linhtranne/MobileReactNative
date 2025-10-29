@@ -1,6 +1,6 @@
-package com.duong.ss22.dto.request;
+package com.data.ss22.dto.request;
 
-import com.duong.ss22.enums.TaskStatus;
+import com.data.ss22.enums.TaskStatus;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

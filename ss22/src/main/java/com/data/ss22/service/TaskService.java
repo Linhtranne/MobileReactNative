@@ -1,10 +1,10 @@
-package com.duong.ss22.service;
+package com.data.ss22.service;
 
-import com.duong.ss22.dto.request.ChangeStatusDTO;
-import com.duong.ss22.dto.request.CreateTaskDTO;
-import com.duong.ss22.dto.request.UpdateTaskDTO;
-import com.duong.ss22.dto.response.ApiResponse;
-import com.duong.ss22.dto.response.DisplayTaskDTO;
+import com.data.ss22.dto.request.ChangeStatusDTO;
+import com.data.ss22.dto.request.CreateTaskDTO;
+import com.data.ss22.dto.request.UpdateTaskDTO;
+import com.data.ss22.dto.response.ApiResponse;
+import com.data.ss22.dto.response.DisplayTaskDTO;
 
 import java.util.List;
 

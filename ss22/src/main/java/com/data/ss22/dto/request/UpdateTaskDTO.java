@@ -1,7 +1,6 @@
-package com.duong.ss22.dto.request;
+package com.data.ss22.dto.request;
 
-import com.duong.ss22.enums.PriorityLevel;
-import com.duong.ss22.enums.TaskStatus;
+import com.data.ss22.enums.PriorityLevel;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;

@@ -1,4 +1,4 @@
-package com.duong.ss22.enums;
+package com.data.ss22.enums;
 
 public enum PriorityLevel {
     HIGH,

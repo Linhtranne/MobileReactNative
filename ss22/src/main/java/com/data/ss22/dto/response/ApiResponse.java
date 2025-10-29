@@ -1,4 +1,4 @@
-package com.duong.ss22.dto.response;
+package com.data.ss22.dto.response;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
-package com.duong.ss22.entity;
+package com.data.ss22.entity;
 
-import com.duong.ss22.enums.PriorityLevel;
-import com.duong.ss22.enums.TaskStatus;
+import com.data.ss22.enums.PriorityLevel;
+import com.data.ss22.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

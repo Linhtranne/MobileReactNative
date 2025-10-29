@@ -1,8 +1,8 @@
-package com.duong.ss22.controller.advice;
+package com.data.ss22.controller.advice;
 
-import com.duong.ss22.dto.response.ApiResponse;
-import com.duong.ss22.exception.BadRequestException;
-import com.duong.ss22.exception.ForbiddenException;
+import com.data.ss22.dto.response.ApiResponse;
+import com.data.ss22.exception.BadRequestException;
+import com.data.ss22.exception.ForbiddenException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

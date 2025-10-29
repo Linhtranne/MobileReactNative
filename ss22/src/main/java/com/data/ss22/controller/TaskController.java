@@ -1,18 +1,15 @@
-package com.duong.ss22.controller;
+package com.data.ss22.controller;
 
-import com.duong.ss22.dto.request.ChangeStatusDTO;
-import com.duong.ss22.dto.request.CreateTaskDTO;
-import com.duong.ss22.dto.request.UpdateTaskDTO;
-import com.duong.ss22.dto.response.ApiResponse;
-import com.duong.ss22.dto.response.DisplayTaskDTO;
-import com.duong.ss22.service.TaskService;
+import com.data.ss22.dto.request.ChangeStatusDTO;
+import com.data.ss22.dto.request.CreateTaskDTO;
+import com.data.ss22.dto.request.UpdateTaskDTO;
+import com.data.ss22.dto.response.ApiResponse;
+import com.data.ss22.dto.response.DisplayTaskDTO;
+import com.data.ss22.service.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/api/v1/tasks")

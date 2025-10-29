@@ -1,14 +1,14 @@
-package com.duong.ss22.service.impl;
+package com.data.ss22.service.impl;
 
-import com.duong.ss22.dto.request.ChangeStatusDTO;
-import com.duong.ss22.dto.request.CreateTaskDTO;
-import com.duong.ss22.dto.request.UpdateTaskDTO;
-import com.duong.ss22.dto.response.ApiResponse;
-import com.duong.ss22.dto.response.DisplayTaskDTO;
-import com.duong.ss22.entity.Task;
-import com.duong.ss22.enums.TaskStatus;
-import com.duong.ss22.repository.TaskRepo;
-import com.duong.ss22.service.TaskService;
+import com.data.ss22.dto.request.ChangeStatusDTO;
+import com.data.ss22.dto.request.CreateTaskDTO;
+import com.data.ss22.dto.request.UpdateTaskDTO;
+import com.data.ss22.dto.response.ApiResponse;
+import com.data.ss22.dto.response.DisplayTaskDTO;
+import com.data.ss22.entity.Task;
+import com.data.ss22.enums.TaskStatus;
+import com.data.ss22.repository.TaskRepo;
+import com.data.ss22.service.TaskService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

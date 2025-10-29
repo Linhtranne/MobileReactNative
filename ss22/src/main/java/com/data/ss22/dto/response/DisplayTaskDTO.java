@@ -1,8 +1,7 @@
-package com.duong.ss22.dto.response;
+package com.data.ss22.dto.response;
 
-import com.duong.ss22.enums.PriorityLevel;
-import com.duong.ss22.enums.TaskStatus;
-import jakarta.persistence.*;
+import com.data.ss22.enums.PriorityLevel;
+import com.data.ss22.enums.TaskStatus;
 import lombok.*;
 
 @Getter

@@ -1,4 +1,4 @@
-package com.duong.ss22;
+package com.data.ss22;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
